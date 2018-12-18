@@ -44,26 +44,40 @@ export default class ImageBlock extends Component {
   }
 
   render() {
-    return (
-      <CommonBlock {...this.props} actions={this.actions}>
-        <BlockContent>
+    const { getReadOnly } = this.props.blockProps;
+
+    if (getReadOnly()) {
+      return (
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <img style={ImageBlockStyle.image} src={this.props.data.src} alt="" />
-        </BlockContent>
+        </div>
+      );
+    } else {
+      return (
+        <CommonBlock {...this.props} actions={this.actions}>
+          <BlockContent>
+            <img
+              style={ImageBlockStyle.image}
+              src={this.props.data.src}
+              alt=""
+            />
+          </BlockContent>
 
-        <BlockData>
-          <BlockInput
-            placeholder="Caption"
-            value={this.props.data.caption}
-            onChange={this._handleCaptionChange}
-          />
+          <BlockData>
+            <BlockInput
+              placeholder="Caption"
+              value={this.props.data.caption}
+              onChange={this._handleCaptionChange}
+            />
 
-          <BlockInput
-            placeholder="Rights Holder"
-            value={this.props.data.rightsHolder}
-            onChange={this._handleRightsHolderChange}
-          />
-        </BlockData>
-      </CommonBlock>
-    );
+            <BlockInput
+              placeholder="Rights Holder"
+              value={this.props.data.rightsHolder}
+              onChange={this._handleRightsHolderChange}
+            />
+          </BlockData>
+        </CommonBlock>
+      );
+    }
   }
 }
