@@ -32,10 +32,24 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-# Build files
-dist/
-lib/
+# Source files
 .DS_Store
 .idea/
-app.css
-website/index.html
+docs/
+scripts/
+src/
+tests/
+website/
+.babelrc
+.editorconfig
+eslintrc.json
+.travis.yml
+AUTHORS
+gulpfile.js
+Makefile
+makewebpackconfig.js
+test.js
+tests.webpack.js
+webpack.config.js
+webpack.config.site.js
+yarn.lock
