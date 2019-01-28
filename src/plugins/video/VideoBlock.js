@@ -37,25 +37,40 @@ export default class VideoBlock extends Component {
   }
 
   render() {
-    return (
-      <CommonBlock {...this.props} actions={this.actions}>
-        <BlockContent>
+    const { getReadOnly } = this.props.blockProps;
+
+    if (getReadOnly()) {
+      return (
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <video
             controls
             style={VideoBlockStyle.video}
             src={this.props.data.src}
             alt=""
           />
-        </BlockContent>
+        </div>
+      );
+    } else {
+      return (
+        <CommonBlock {...this.props} actions={this.actions}>
+          <BlockContent>
+            <video
+              controls
+              style={VideoBlockStyle.video}
+              src={this.props.data.src}
+              alt=""
+            />
+          </BlockContent>
 
-        <BlockData>
-          <BlockInput
-            placeholder="Caption"
-            value={this.props.data.caption}
-            onChange={this._handleCaptionChange}
-          />
-        </BlockData>
-      </CommonBlock>
-    );
+          <BlockData>
+            <BlockInput
+              placeholder="Caption"
+              value={this.props.data.caption}
+              onChange={this._handleCaptionChange}
+            />
+          </BlockData>
+        </CommonBlock>
+      );
+    }
   }
 }
